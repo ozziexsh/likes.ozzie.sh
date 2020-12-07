@@ -71,8 +71,9 @@ export default function List({ reference, width, total }: ListProps) {
             overscan={200}
             item={(index) => (
               <div>
-                {Array.from({ length: Math.round(numCols) }).map(() => (
+                {Array.from({ length: (numRows - 1) === index ? totalUsed - (index * numCols) : numCols }).map((_, colIndex) => (
                   <svg
+                    key={`person-${index}-${colIndex}`}
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
