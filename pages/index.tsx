@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useCallback } from 'react';
 // @ts-ignore
 import ReactResizeDetector from 'react-resize-detector';
 import List from '../components/list';
@@ -8,13 +8,13 @@ export default function Home() {
   const [input, setInput] = useState('');
   const amount = useMemo(() => parseFloat(input), [input]);
 
-  function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+  const onInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
     if (value.match(/^[0-9]*$/) === null) {
       return;
     }
     setInput(value);
-  }
+  }, []);
 
   return (
     <div className={'flex flex-col items-center'}>
